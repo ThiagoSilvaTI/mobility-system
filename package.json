@@ -1,0 +1,22 @@
+{
+  "name": "mobilidade-urbana",
+  "version": "1.0.0",
+  "description": "Plataforma de mobilidade urbana inteligente e sustentável",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "init-db": "node database/init.js",
+    "reset-db": "node database/init.js -- --reset"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "keywords": ["mobilidade", "transporte", "sustentabilidade"],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "ws": "^8.18.0"
+  }
+}

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Municipal — MobiCidade</title>
+  <link rel="stylesheet" href="/css/admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <aside class="sidebar-admin">
+    <div class="brand">
+      <span aria-hidden="true">🌿</span>
+      <h1>MobiCidade</h1>
+      <span class="badge">Gestão Municipal</span>
+    </div>
+    <nav aria-label="Menu administrativo">
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#rotas">Rotas</a>
+      <a href="#regioes">Demanda regional</a>
+      <a href="#ambiental">Indicadores ambientais</a>
+      <a href="#solicitacoes">Solicitações</a>
+      <a href="#acessos">Acessos admin</a>
+    </nav>
+    <div class="sidebar-admin__user" id="adminUserBar"></div>
+    <button type="button" class="btn btn--outline btn--sm" id="btnLogoutAdmin">Sair</button>
+    <a href="/" class="back-app">← App do cidadão</a>
+  </aside>
+
+  <main class="admin-main">
+    <header class="admin-header">
+      <h2>Painel de Gestão da Mobilidade Urbana</h2>
+      <p>Planejamento baseado em dados — fluxo, demanda e sustentabilidade</p>
+      <button id="btnAtualizar" class="btn">Atualizar dados</button>
+    </header>
+
+    <section id="dashboard" class="kpi-grid" aria-label="Indicadores principais">
+      <article class="kpi-card">
+        <span class="kpi-icon">🚌</span>
+        <div>
+          <p class="kpi-label">Veículos ativos</p>
+          <p class="kpi-value" id="kpiVeiculos">—</p>
+        </div>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-icon">👥</span>
+        <div>
+          <p class="kpi-label">Passageiros hoje</p>
+          <p class="kpi-value" id="kpiPassageiros">—</p>
+        </div>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-icon">📋</span>
+        <div>
+          <p class="kpi-label">Solicitações pendentes</p>
+          <p class="kpi-value" id="kpiSolicitacoes">—</p>
+        </div>
+      </article>
+      <article class="kpi-card kpi-card--eco">
+        <span class="kpi-icon">🌱</span>
+        <div>
+          <p class="kpi-label">CO₂ evitado (kg/mês)</p>
+          <p class="kpi-value" id="kpiCo2">—</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="charts-row">
+      <article class="chart-card">
+        <h3>Fluxo de passageiros (7 dias)</h3>
+        <canvas id="chartFluxo" aria-label="Gráfico de fluxo de passageiros"></canvas>
+      </article>
+      <article class="chart-card">
+        <h3>Demanda por região</h3>
+        <canvas id="chartRegiao" aria-label="Gráfico de demanda por região"></canvas>
+      </article>
+    </section>
+
+    <section id="rotas" class="section-block">
+      <h3>Rotas mais utilizadas</h3>
+      <div class="table-wrap">
+        <table id="tabelaRotas">
+          <thead>
+            <tr><th>Rota</th><th>Tipo</th><th>Duração</th><th>Embarques/dia</th><th>CO₂ evitado</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="regioes" class="section-block">
+      <h3>Passageiros e demanda por região</h3>
+      <div class="table-wrap">
+        <table id="tabelaRegioes">
+          <thead>
+            <tr><th>Região</th><th>Demanda (%)</th><th>Passageiros/dia</th><th>Emissões CO₂ (kg)</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="ambiental" class="section-block eco-block">
+      <h3>Indicadores ambientais</h3>
+      <div class="eco-grid" id="ecoIndicadores"></div>
+    </section>
+
+    <section id="solicitacoes" class="section-block">
+      <h3>Solicitações de transporte sob demanda</h3>
+      <div class="table-wrap">
+        <table id="tabelaSolicitacoes">
+          <thead>
+            <tr><th>ID</th><th>Nome</th><th>Origem</th><th>Destino</th><th>Região</th><th>Status</th><th>Ação</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="acessos" class="section-block">
+      <h3>Gestão de acessos administrativos</h3>
+      <p class="section-desc">Conceda ou revogue permissão de administrador para CPFs já cadastrados como cidadãos.</p>
+
+      <form id="formConcederAdmin" class="admin-acesso-form">
+        <label for="cpfAdmin">CPF do cidadão</label>
+        <div class="admin-acesso-form__row">
+          <input type="text" id="cpfAdmin" placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required>
+          <button type="submit" class="btn">Conceder acesso admin</button>
+        </div>
+      </form>
+      <div id="msgAcessos" class="auth-msg" hidden role="alert"></div>
+
+      <div class="admin-busca">
+        <label for="buscaCidadao">Buscar cidadãos</label>
+        <input type="search" id="buscaCidadao" placeholder="Nome ou CPF...">
+      </div>
+
+      <div class="table-wrap">
+        <table id="tabelaCidadaos">
+          <thead>
+            <tr><th>Nome</th><th>CPF</th><th>Perfil</th><th>Ação</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin-auth.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

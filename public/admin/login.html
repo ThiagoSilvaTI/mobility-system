@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Administrativo — MobiCidade</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body class="auth-page">
+  <main class="auth-card auth-card--admin" aria-labelledby="titulo-admin-login">
+    <div class="auth-card__brand">
+      <span class="logo" aria-hidden="true">🏛️</span>
+      <h1 id="titulo-admin-login">Área administrativa</h1>
+      <p>Acesso restrito a gestores municipais autorizados</p>
+    </div>
+
+    <div id="msgAdminLogin" class="auth-msg auth-msg--erro" hidden role="alert"></div>
+
+    <form id="formAdminLogin" class="auth-form">
+      <div>
+        <label for="cpf">CPF do administrador *</label>
+        <input type="text" id="cpf" inputmode="numeric" placeholder="000.000.000-00" required maxlength="14" autocomplete="username">
+      </div>
+      <div>
+        <label for="senha">Senha *</label>
+        <input type="password" id="senha" required minlength="6" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn--primary btn--block">Entrar no painel</button>
+    </form>
+
+    <p class="auth-footer">
+      <a href="/login.html">← Área do cidadão</a>
+    </p>
+
+    <div class="demo-box">
+      <strong>Admin inicial (demo):</strong><br>
+      CPF: 529.982.247-25 · Senha: 123456
+    </div>
+  </main>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/admin-auth.js"></script>
+  <script>
+    if (getAdminToken()) {
+      validarSessaoAdmin().then((a) => { if (a) window.location.href = '/admin.html'; });
+    }
+
+    document.getElementById('cpf').addEventListener('input', (e) => {
+      e.target.value = mascararCpf(e.target.value);
+    });
+
+    document.getElementById('formAdminLogin').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('msgAdminLogin');
+      msg.hidden = true;
+      try {
+        const res = await fetch('/api/auth/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            cpf: document.getElementById('cpf').value,
+            senha: document.getElementById('senha').value,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          msg.textContent = data.erro || 'Não foi possível entrar';
+          msg.hidden = false;
+          return;
+        }
+        salvarSessaoAdmin(data.token, data.admin);
+        window.location.href = '/admin.html';
+      } catch {
+        msg.textContent = 'Erro de conexão';
+        msg.hidden = false;
+      }
+    });
+  </script>
+</body>
+</html>

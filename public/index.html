@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mobilidade urbana inteligente - rotas, horários e transporte em tempo real">
+  <title>MobiCidade — Mobilidade Urbana Inteligente</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Ir para o conteúdo principal</a>
+
+  <header class="header" role="banner">
+    <div class="header__brand">
+      <span class="logo" aria-hidden="true">🌿</span>
+      <div>
+        <h1>MobiCidade</h1>
+        <p class="tagline">Mobilidade inteligente, sustentável e inclusiva</p>
+      </div>
+    </div>
+    <nav class="header__nav" aria-label="Navegação principal">
+      <button class="nav-btn active" data-section="mapa" aria-current="page">Mapa</button>
+      <button class="nav-btn" data-section="horarios">Horários</button>
+      <button class="nav-btn" data-section="rastreamento">Rastreamento</button>
+      <button class="nav-btn" data-section="demanda">Sob demanda</button>
+    </nav>
+    <div id="userBar" class="user-bar" aria-live="polite"></div>
+    <button class="a11y-toggle" id="a11yBtn" aria-label="Abrir opções de acessibilidade" aria-expanded="false">♿ Acessibilidade</button>
+  </header>
+
+  <aside class="a11y-panel" id="a11yPanel" aria-label="Painel de acessibilidade" hidden>
+    <h2>Opções de acessibilidade</h2>
+    <label><input type="checkbox" id="altoContraste"> Alto contraste</label>
+    <label><input type="checkbox" id="fonteGrande"> Fonte ampliada</label>
+    <label><input type="checkbox" id="reduzirMovimento"> Reduzir animações</label>
+    <label><input type="checkbox" id="narracao"> Descrições para leitores de tela</label>
+    <button id="fecharA11y" class="btn btn--secondary">Fechar</button>
+  </aside>
+
+  <main id="main-content" class="main">
+    <!-- MAPA -->
+    <section id="sec-mapa" class="section active" aria-labelledby="titulo-mapa">
+      <div class="sidebar">
+        <h2 id="titulo-mapa">Planeje sua viagem</h2>
+        <form id="formRota" class="form" aria-label="Buscar rota">
+          <label for="destino">Para onde você vai?</label>
+          <input type="text" id="destino" name="destino" placeholder="Ex: Rodoviária, Hospital Municipal..." required autocomplete="off">
+          <fieldset class="destinos-rapidos" id="destinosRapidos">
+            <legend>Destinos rápidos</legend>
+          </fieldset>
+          <button type="submit" class="btn btn--primary">Buscar melhor rota</button>
+        </form>
+        <div id="resultadosRota" class="resultados" role="region" aria-live="polite" aria-label="Resultados de rotas"></div>
+        <div class="legenda" aria-label="Legenda do mapa">
+          <span><i class="dot dot--bus"></i> Ônibus</span>
+          <span><i class="dot dot--van"></i> Van</span>
+          <span><i class="dot dot--bike"></i> Bicicleta</span>
+        </div>
+      </div>
+      <div id="map" class="map" role="application" aria-label="Mapa da cidade com veículos em tempo real"></div>
+    </section>
+
+    <!-- HORÁRIOS -->
+    <section id="sec-horarios" class="section" aria-labelledby="titulo-horarios" hidden>
+      <div class="panel">
+        <h2 id="titulo-horarios">Consulta de horários</h2>
+        <form id="formHorarios" class="form form--inline">
+          <label for="filtroLinha">Linha</label>
+          <input type="text" id="filtroLinha" placeholder="Ex: 101, V1...">
+          <label for="filtroTipo">Tipo</label>
+          <select id="filtroTipo">
+            <option value="">Todos</option>
+            <option value="onibus">Ônibus</option>
+            <option value="van">Van comunitária</option>
+            <option value="bicicleta">Bicicleta</option>
+          </select>
+          <button type="submit" class="btn btn--primary">Buscar</button>
+        </form>
+        <div id="listaHorarios" class="tabela-wrap" role="region" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- RASTREAMENTO -->
+    <section id="sec-rastreamento" class="section" aria-labelledby="titulo-rastreamento" hidden>
+      <div class="panel">
+        <h2 id="titulo-rastreamento">Acompanhamento em tempo real</h2>
+        <p class="desc">Veículos atualizados a cada 4 segundos via conexão em tempo real.</p>
+        <div id="listaVeiculos" class="cards-grid" role="list" aria-live="polite"></div>
+      </div>
+      <div id="mapRastreamento" class="map map--half" aria-label="Mapa de rastreamento"></div>
+    </section>
+
+    <!-- SOB DEMANDA -->
+    <section id="sec-demanda" class="section" aria-labelledby="titulo-demanda" hidden>
+      <div class="panel panel--narrow">
+        <h2 id="titulo-demanda">Transporte sob demanda</h2>
+        <p class="desc">Para regiões com menor cobertura de transporte público. Preencha o formulário e a prefeitura analisará sua solicitação.</p>
+        <p class="desc" id="demandaUsuarioInfo"></p>
+        <form id="formDemanda" class="form">
+          <label for="telDemanda">Telefone</label>
+          <input type="tel" id="telDemanda" name="telefone" placeholder="(98) 99999-9999" autocomplete="tel">
+          <label for="origemDemanda">Origem *</label>
+          <input type="text" id="origemDemanda" name="origem" required placeholder="Endereço ou ponto de referência">
+          <label for="destinoDemanda">Destino *</label>
+          <input type="text" id="destinoDemanda" name="destino" required placeholder="Para onde precisa ir?">
+          <label for="regiaoDemanda">Região</label>
+          <select id="regiaoDemanda" name="regiao">
+            <option value="Zona Rural Norte">Zona Rural Norte</option>
+            <option value="Zona Rural Sul">Zona Rural Sul</option>
+            <option value="Araçagy">Araçagy</option>
+            <option value="São José">São José</option>
+            <option value="Bacuri">Bacuri</option>
+            <option value="Outra">Outra</option>
+          </select>
+          <button type="submit" class="btn btn--primary btn--block">Solicitar transporte</button>
+        </form>
+        <div id="msgDemanda" class="msg" role="alert" hidden></div>
+        <div id="minhasSolicitacoes" class="minhas-solicitacoes" hidden>
+          <h3>Suas solicitações recentes</h3>
+          <ul id="listaMinhasSolicitacoes"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <p>MobiCidade © 2026 — Mobilidade sustentável para todos</p>
+    <p class="footer__eco">🌍 Cada viagem de transporte público reduz emissões de CO₂</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/accessibility.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
