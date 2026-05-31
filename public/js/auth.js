@@ -107,6 +107,27 @@ function renderLinkAdmin() {
   }
 }
 
+async function deletarConta() {
+  const confirmou = window.confirm(
+    'Tem certeza que deseja apagar sua conta? Essa ação não pode ser desfeita.'
+  );
+  if (!confirmou) return;
+
+  try {
+    const res = await authFetch('/api/auth/me', { method: 'DELETE' });
+    if (!res.ok) {
+      const data = await res.json().catch(() => null);
+      throw new Error(data?.erro || 'Não foi possível excluir sua conta');
+    }
+  } catch (error) {
+    alert(error.message);
+    return;
+  }
+
+  limparSessao();
+  window.location.href = '/login.html';
+}
+
 function renderUsuarioHeader() {
   const el = document.getElementById('userBar');
   const u = getUsuario();
@@ -114,8 +135,10 @@ function renderUsuarioHeader() {
   el.innerHTML = `
     <span class="user-bar__nome" title="CPF ${u.cpf}">Olá, <strong>${u.nome.split(' ')[0]}</strong></span>
     ${u.isAdmin ? '<span class="user-bar__badge" title="Administrador">Gestor</span>' : ''}
+    <button type="button" class="btn btn--sm btn--danger" id="btnDeleteAccount">Apagar conta</button>
     <button type="button" class="btn btn--sm btn--outline" id="btnLogout">Sair</button>
   `;
   document.getElementById('btnLogout')?.addEventListener('click', logout);
+  document.getElementById('btnDeleteAccount')?.addEventListener('click', deletarConta);
   renderLinkAdmin();
 }

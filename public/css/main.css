@@ -156,6 +156,8 @@ body.reduzir-movimento * { animation: none !important; transition: none !importa
 .btn--primary { background: var(--verde); color: #fff; }
 .btn--primary:hover { background: var(--verde-escuro); }
 .btn--secondary { background: #e0e0e0; color: var(--texto); }
+.btn--danger { background: #e74c3c; color: #fff; }
+.btn--danger:hover { background: #c0392b; }
 .btn--block { width: 100%; }
 .btn:focus { outline: 3px solid var(--verde-claro); }
 

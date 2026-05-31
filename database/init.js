@@ -20,8 +20,8 @@ function dropAll(db) {
 
 function createSchema(db) {
   db.exec(`
-    CREATE TABLE IF NOT EXISTS veiculos (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE veiculos (
+      id INTEGER PRIMARY KEY,
       tipo TEXT NOT NULL,
       linha TEXT,
       placa TEXT,
@@ -31,8 +31,8 @@ function createSchema(db) {
       ativo INTEGER DEFAULT 1
     );
 
-    CREATE TABLE IF NOT EXISTS rotas (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE rotas (
+      id INTEGER PRIMARY KEY,
       nome TEXT NOT NULL,
       tipo TEXT NOT NULL,
       origem TEXT,
@@ -42,8 +42,8 @@ function createSchema(db) {
       co2_evitado_kg REAL DEFAULT 0
     );
 
-    CREATE TABLE IF NOT EXISTS horarios (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE horarios (
+      id INTEGER PRIMARY KEY,
       rota_id INTEGER,
       linha TEXT,
       tipo TEXT,
@@ -52,16 +52,16 @@ function createSchema(db) {
       FOREIGN KEY (rota_id) REFERENCES rotas(id)
     );
 
-    CREATE TABLE IF NOT EXISTS paradas (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE paradas (
+      id INTEGER PRIMARY KEY,
       nome TEXT NOT NULL,
       lat REAL NOT NULL,
       lng REAL NOT NULL,
       acessivel INTEGER DEFAULT 1
     );
 
-    CREATE TABLE IF NOT EXISTS cidadaos (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE cidadaos (
+      id INTEGER PRIMARY KEY,
       nome TEXT NOT NULL,
       cpf TEXT NOT NULL UNIQUE,
       email TEXT,
@@ -71,16 +71,16 @@ function createSchema(db) {
       criado_em TEXT DEFAULT (datetime('now'))
     );
 
-    CREATE TABLE IF NOT EXISTS sessoes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE sessoes (
+      id INTEGER PRIMARY KEY,
       token TEXT NOT NULL UNIQUE,
       cidadao_id INTEGER NOT NULL,
       expira_em TEXT NOT NULL,
       FOREIGN KEY (cidadao_id) REFERENCES cidadaos(id)
     );
 
-    CREATE TABLE IF NOT EXISTS solicitacoes (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE solicitacoes (
+      id INTEGER PRIMARY KEY,
       cidadao_id INTEGER,
       nome TEXT,
       telefone TEXT,
@@ -92,16 +92,16 @@ function createSchema(db) {
       FOREIGN KEY (cidadao_id) REFERENCES cidadaos(id)
     );
 
-    CREATE TABLE IF NOT EXISTS metricas_regiao (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE metricas_regiao (
+      id INTEGER PRIMARY KEY,
       regiao TEXT NOT NULL,
       demanda INTEGER,
       passageiros_dia INTEGER,
       co2_kg REAL
     );
 
-    CREATE TABLE IF NOT EXISTS fluxo_diario (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+    CREATE TABLE fluxo_diario (
+      id INTEGER PRIMARY KEY,
       data TEXT,
       passageiros INTEGER,
       viagens INTEGER

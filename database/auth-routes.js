@@ -111,17 +111,8 @@ function registrarRotasAuth(app, db) {
       )
       .run(nome.trim(), cpfNum, email?.trim() || null, telefone?.trim() || null, hashSenha(senha));
 
-    const cidadao = db.prepare(
-  'SELECT * FROM cidadaos WHERE cpf = ?'
-).get(cpfNum);
-
-if (!cidadao) {
-  return res.status(500).json({
-    erro: 'Erro ao recuperar usuário recém-criado'
-  });
-}
-
-const token = criarSessao(cidadao.id);
+    const cidadao = db.prepare('SELECT * FROM cidadaos WHERE id = ?').get(r.lastInsertRowid);
+    const token = criarSessao(cidadao.id);
 
     res.status(201).json({
       mensagem: 'Cadastro realizado com sucesso',
@@ -180,6 +171,14 @@ const token = criarSessao(cidadao.id);
 
   app.get('/api/auth/me', authMiddleware, (req, res) => {
     res.json({ cidadao: cidadaoComPerfil(req.cidadao) });
+  });
+
+  app.delete('/api/auth/me', authMiddleware, (req, res) => {
+    const cidadaoId = req.cidadao.id;
+    db.prepare('DELETE FROM solicitacoes WHERE cidadao_id = ?').run(cidadaoId);
+    db.prepare('DELETE FROM sessoes WHERE cidadao_id = ?').run(cidadaoId);
+    db.prepare('DELETE FROM cidadaos WHERE id = ?').run(cidadaoId);
+    res.json({ mensagem: 'Conta excluída com sucesso' });
   });
 
   app.get('/api/auth/admin/me', adminAuthMiddleware, (req, res) => {

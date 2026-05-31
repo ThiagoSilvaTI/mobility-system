@@ -18,14 +18,10 @@ function wrap(db) {
           return params.length ? stmt.get(...params) : stmt.get();
         },
         run(...params) {
-  const result = params.length
-    ? stmt.run(...params)
-    : stmt.run();
-
-  return {
-    lastInsertRowid: Number(result.lastInsertRowid || 0)
-  };
-}
+          if (params.length) stmt.run(...params);
+          else stmt.run();
+          return { lastInsertRowid: Number(db.lastInsertRowid) };
+        },
       };
     },
     close() {
