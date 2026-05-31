@@ -111,8 +111,17 @@ function registrarRotasAuth(app, db) {
       )
       .run(nome.trim(), cpfNum, email?.trim() || null, telefone?.trim() || null, hashSenha(senha));
 
-    const cidadao = db.prepare('SELECT * FROM cidadaos WHERE id = ?').get(r.lastInsertRowid);
-    const token = criarSessao(cidadao.id);
+    const cidadao = db.prepare(
+  'SELECT * FROM cidadaos WHERE cpf = ?'
+).get(cpfNum);
+
+if (!cidadao) {
+  return res.status(500).json({
+    erro: 'Erro ao recuperar usuário recém-criado'
+  });
+}
+
+const token = criarSessao(cidadao.id);
 
     res.status(201).json({
       mensagem: 'Cadastro realizado com sucesso',

@@ -13,9 +13,7 @@ const cidade = require('./config/cidade');
 
 const PORT = process.env.PORT || 3000;
 
-if (!fs.existsSync(DB_PATH)) {
-  initDatabase();
-}
+initDatabase();
 
 const db = openDb();
 migrateAuth(db);
