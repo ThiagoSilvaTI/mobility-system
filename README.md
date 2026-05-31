@@ -7,7 +7,7 @@ Plataforma digital de mobilidade urbana com app para cidadãos e painel de gest�
 - Cadastro em `/cadastro.html` com **CPF obrigatório** (validação de dígitos)
 - Login em `/login.html` com CPF + senha
 - Um cadastro por CPF
-- Conta demo: **529.982.247-25** / senha **123456**
+- Conta demo: **096.209.973-28** / senha **123456**
 
 ## Área administrativa (separada)
 
