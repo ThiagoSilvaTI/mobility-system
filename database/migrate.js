@@ -49,13 +49,13 @@ function migrateAuth(db) {
     db.prepare(
       'INSERT INTO cidadaos (nome, cpf, email, telefone, senha_hash, is_admin) VALUES (?,?,?,?,?,1)'
     ).run(
-      'Maria Silva (demo)',
-      '52998224725',
-      'maria@email.com',
+      'Ana Clara Silva Aragão',
+      '096.209.973-28',
+      'aragão@email.com',
       '(98) 99999-0000',
       hashSenha('123456')
     );
-    console.log('Cidadão demo (admin): CPF 529.982.247-25 | senha: 123456');
+    console.log('Cidadão demo (admin): CPF 096.209.973-28 | senha: 123456');
   }
 }
 
