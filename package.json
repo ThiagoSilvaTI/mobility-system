@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "node server.js",
     "init-db": "node database/init.js",
-    "reset-db": "node database/init.js -- --reset"
+    "reset-db": "node -e \"const {resetDatabase}=require('./database/init');resetDatabase();\""
   },
   "engines": {
     "node": ">=22.5.0"

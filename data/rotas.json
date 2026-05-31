@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "nome": "Linha 101 - Centro ↔ Araçagy",
+    "tipo": "onibus",
+    "origem": "Bairro Araçagy",
+    "destino": "Praça Coronel Raimundo",
+    "duracao_min": 35,
+    "embarques": 1240,
+    "co2_evitado_kg": 12.5
+  },
+  {
+    "id": 2,
+    "nome": "Linha 202 - São José Expresso",
+    "tipo": "onibus",
+    "origem": "Bairro São José",
+    "destino": "Centro",
+    "duracao_min": 28,
+    "embarques": 980,
+    "co2_evitado_kg": 9.8
+  },
+  {
+    "id": 3,
+    "nome": "Linha 305 - Circular Verde",
+    "tipo": "onibus",
+    "origem": "Parque da Cidade",
+    "destino": "Centro",
+    "duracao_min": 45,
+    "embarques": 2100,
+    "co2_evitado_kg": 18.2
+  },
+  {
+    "id": 4,
+    "nome": "Van Comunitária V1",
+    "tipo": "van",
+    "origem": "Bairro Bacuri",
+    "destino": "Centro",
+    "duracao_min": 22,
+    "embarques": 340,
+    "co2_evitado_kg": 4.1
+  },
+  {
+    "id": 5,
+    "nome": "Van Comunitária V2",
+    "tipo": "van",
+    "origem": "Zona Rural Norte",
+    "destino": "Hospital Municipal",
+    "duracao_min": 30,
+    "embarques": 280,
+    "co2_evitado_kg": 3.5
+  },
+  {
+    "id": 6,
+    "nome": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "origem": "Estação Bike A",
+    "destino": "Estação Bike B",
+    "duracao_min": 15,
+    "embarques": 890,
+    "co2_evitado_kg": 22
+  },
+  {
+    "id": 7,
+    "nome": "Linha 410 - Rodoviária ↔ Centro",
+    "tipo": "onibus",
+    "origem": "Rodoviária",
+    "destino": "Centro",
+    "duracao_min": 40,
+    "embarques": 1560,
+    "co2_evitado_kg": 14
+  },
+  {
+    "id": 8,
+    "nome": "Integração Multimodal",
+    "tipo": "misto",
+    "origem": "Mercado Municipal",
+    "destino": "Rodoviária",
+    "duracao_min": 50,
+    "embarques": 450,
+    "co2_evitado_kg": 8
+  }
+]

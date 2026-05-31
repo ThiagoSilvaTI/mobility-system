@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "regiao": "Centro",
+    "demanda": 95,
+    "passageiros_dia": 8200,
+    "co2_kg": 220
+  },
+  {
+    "id": 2,
+    "regiao": "Araçagy",
+    "demanda": 72,
+    "passageiros_dia": 5400,
+    "co2_kg": 150
+  },
+  {
+    "id": 3,
+    "regiao": "São José",
+    "demanda": 68,
+    "passageiros_dia": 4800,
+    "co2_kg": 130
+  },
+  {
+    "id": 4,
+    "regiao": "Bacuri",
+    "demanda": 55,
+    "passageiros_dia": 3100,
+    "co2_kg": 88
+  },
+  {
+    "id": 5,
+    "regiao": "Zona Rural Norte",
+    "demanda": 42,
+    "passageiros_dia": 2100,
+    "co2_kg": 62
+  },
+  {
+    "id": 6,
+    "regiao": "Zona Rural Sul",
+    "demanda": 38,
+    "passageiros_dia": 1900,
+    "co2_kg": 55
+  },
+  {
+    "id": 7,
+    "regiao": "Periferia Oeste",
+    "demanda": 48,
+    "passageiros_dia": 2800,
+    "co2_kg": 75
+  }
+]

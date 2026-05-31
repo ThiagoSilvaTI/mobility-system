@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "nome": "Administrador",
+    "cpf": "12345678900",
+    "cpfFormatado": "123.456.789-00",
+    "senha": "admin123",
+    "email": "admin@mobicidade.com",
+    "telefone": "(98) 99999-0000",
+    "isAdmin": true,
+    "criado_em": "2026-05-31T19:57:24.549Z"
+  },
+  {
+    "id": 2,
+    "nome": "João Silva",
+    "cpf": "52998224725",
+    "cpfFormatado": "529.982.247-25",
+    "senha": "123456",
+    "email": "joao@email.com",
+    "telefone": "(98) 91234-5678",
+    "isAdmin": false,
+    "criado_em": "2026-05-31T19:57:24.549Z"
+  },
+  {
+    "id": 3,
+    "nome": "Maria Santos",
+    "cpf": "12345678909",
+    "cpfFormatado": "123.456.789-09",
+    "senha": "123456",
+    "email": "maria@email.com",
+    "telefone": "(98) 98765-4321",
+    "isAdmin": false,
+    "criado_em": "2026-05-31T19:57:24.549Z"
+  },
+  {
+    "id": 4,
+    "nome": "Ana Clara Silva Aragão",
+    "cpf": "09620997328",
+    "telefone": "",
+    "email": "",
+    "senha": "123456",
+    "cpfFormatado": "096.209.973-28",
+    "isAdmin": true,
+    "criado_em": "2026-05-31T19:58:52.163Z"
+  }
+]

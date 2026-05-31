@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "tipo": "onibus",
+    "linha": "101",
+    "placa": "ABC-1234",
+    "lat": -3.6674663772127456,
+    "lng": -45.38061239326537,
+    "ocupacao": 5,
+    "ativo": 1
+  },
+  {
+    "id": 2,
+    "tipo": "onibus",
+    "linha": "202",
+    "placa": "DEF-5678",
+    "lat": -3.670566486870349,
+    "lng": -45.37826848781792,
+    "ocupacao": 5,
+    "ativo": 1
+  },
+  {
+    "id": 3,
+    "tipo": "onibus",
+    "linha": "305",
+    "placa": "GHI-9012",
+    "lat": -3.666820182453904,
+    "lng": -45.38242767220245,
+    "ocupacao": 29,
+    "ativo": 1
+  },
+  {
+    "id": 4,
+    "tipo": "van",
+    "linha": "V1 Centro",
+    "placa": "JKL-3456",
+    "lat": -3.6688001418222687,
+    "lng": -45.37996333071981,
+    "ocupacao": 5,
+    "ativo": 1
+  },
+  {
+    "id": 5,
+    "tipo": "van",
+    "linha": "V2 Norte",
+    "placa": "MNO-7890",
+    "lat": -3.662642967548618,
+    "lng": -45.37201566671562,
+    "ocupacao": 7,
+    "ativo": 1
+  },
+  {
+    "id": 6,
+    "tipo": "bicicleta",
+    "linha": "Bike-01",
+    "placa": null,
+    "lat": -3.6712203804947614,
+    "lng": -45.380224516324596,
+    "ocupacao": 0,
+    "ativo": 1
+  },
+  {
+    "id": 7,
+    "tipo": "bicicleta",
+    "linha": "Bike-02",
+    "placa": null,
+    "lat": -3.6705989673420523,
+    "lng": -45.37976273648323,
+    "ocupacao": 0,
+    "ativo": 1
+  },
+  {
+    "id": 8,
+    "tipo": "bicicleta",
+    "linha": "Bike-03",
+    "placa": null,
+    "lat": -3.668104323808647,
+    "lng": -45.384327719764926,
+    "ocupacao": 0,
+    "ativo": 1
+  },
+  {
+    "id": 9,
+    "tipo": "onibus",
+    "linha": "410",
+    "placa": "PQR-1122",
+    "lat": -3.674509275021353,
+    "lng": -45.38450533768144,
+    "ocupacao": 21,
+    "ativo": 1
+  },
+  {
+    "id": 10,
+    "tipo": "van",
+    "linha": "V3 Sul",
+    "placa": "STU-3344",
+    "lat": -3.6645324350335797,
+    "lng": -45.37657915859997,
+    "ocupacao": 5,
+    "ativo": 1
+  }
+]

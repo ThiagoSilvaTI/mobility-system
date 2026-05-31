@@ -1,0 +1,347 @@
+{
+  "nome": "Santa Inês",
+  "uf": "MA",
+  "centro": {
+    "lat": -3.6692,
+    "lng": -45.3801
+  },
+  "destinoPadrao": {
+    "lat": -3.6715,
+    "lng": -45.3768
+  },
+  "zoom": 15,
+  "destinosRapidos": [
+    {
+      "nome": "Rodoviária",
+      "lat": -3.6675,
+      "lng": -45.3835
+    },
+    {
+      "nome": "Hospital Municipal",
+      "lat": -3.6715,
+      "lng": -45.3768
+    },
+    {
+      "nome": "Mercado Municipal",
+      "lat": -3.6645,
+      "lng": -45.3785
+    }
+  ],
+  "destinosBusca": {
+    "centro": [
+      -3.6692,
+      -45.3801
+    ],
+    "praça coronel raimundo": [
+      -3.6692,
+      -45.3801
+    ],
+    "praca coronel raimundo": [
+      -3.6692,
+      -45.3801
+    ],
+    "rodoviária": [
+      -3.6675,
+      -45.3835
+    ],
+    "rodoviaria": [
+      -3.6675,
+      -45.3835
+    ],
+    "hospital municipal": [
+      -3.6715,
+      -45.3768
+    ],
+    "hospital regional": [
+      -3.6715,
+      -45.3768
+    ],
+    "hospital": [
+      -3.6715,
+      -45.3768
+    ],
+    "parque da cidade": [
+      -3.666,
+      -45.3845
+    ],
+    "mercado municipal": [
+      -3.6645,
+      -45.3785
+    ],
+    "bairro são josé": [
+      -3.674,
+      -45.386
+    ],
+    "bairro sao jose": [
+      -3.674,
+      -45.386
+    ],
+    "bairro araçagy": [
+      -3.662,
+      -45.372
+    ],
+    "bairro aracagy": [
+      -3.662,
+      -45.372
+    ],
+    "terminal norte": [
+      -3.662,
+      -45.372
+    ],
+    "santa inês": [
+      -3.6692,
+      -45.3801
+    ],
+    "santa ines": [
+      -3.6692,
+      -45.3801
+    ]
+  },
+  "veiculos": [
+    [
+      "onibus",
+      "101",
+      "ABC-1234",
+      -3.668,
+      -45.381,
+      42
+    ],
+    [
+      "onibus",
+      "202",
+      "DEF-5678",
+      -3.6705,
+      -45.3785,
+      28
+    ],
+    [
+      "onibus",
+      "305",
+      "GHI-9012",
+      -3.6655,
+      -45.3825,
+      55
+    ],
+    [
+      "van",
+      "V1 Centro",
+      "JKL-3456",
+      -3.6692,
+      -45.3801,
+      8
+    ],
+    [
+      "van",
+      "V2 Norte",
+      "MNO-7890",
+      -3.6625,
+      -45.3725,
+      12
+    ],
+    [
+      "bicicleta",
+      "Bike-01",
+      null,
+      -3.6688,
+      -45.3795,
+      0
+    ],
+    [
+      "bicicleta",
+      "Bike-02",
+      null,
+      -3.67,
+      -45.3815,
+      0
+    ],
+    [
+      "bicicleta",
+      "Bike-03",
+      null,
+      -3.6665,
+      -45.383,
+      0
+    ],
+    [
+      "onibus",
+      "410",
+      "PQR-1122",
+      -3.6735,
+      -45.3855,
+      35
+    ],
+    [
+      "van",
+      "V3 Sul",
+      "STU-3344",
+      -3.664,
+      -45.377,
+      6
+    ]
+  ],
+  "paradas": [
+    [
+      "Bairro Araçagy",
+      -3.662,
+      -45.372
+    ],
+    [
+      "Praça Coronel Raimundo",
+      -3.6692,
+      -45.3801
+    ],
+    [
+      "Bairro São José",
+      -3.674,
+      -45.386
+    ],
+    [
+      "Parque da Cidade",
+      -3.666,
+      -45.3845
+    ],
+    [
+      "Mercado Municipal",
+      -3.6645,
+      -45.3785
+    ],
+    [
+      "Estação Bike A",
+      -3.6688,
+      -45.3795
+    ],
+    [
+      "Estação Bike B",
+      -3.6675,
+      -45.3835
+    ],
+    [
+      "Hospital Municipal",
+      -3.6715,
+      -45.3768
+    ],
+    [
+      "Rodoviária",
+      -3.6675,
+      -45.3835
+    ]
+  ],
+  "rotas": [
+    [
+      "Linha 101 - Centro ↔ Araçagy",
+      "onibus",
+      "Bairro Araçagy",
+      "Praça Coronel Raimundo",
+      35,
+      1240,
+      12.5
+    ],
+    [
+      "Linha 202 - São José Expresso",
+      "onibus",
+      "Bairro São José",
+      "Centro",
+      28,
+      980,
+      9.8
+    ],
+    [
+      "Linha 305 - Circular Verde",
+      "onibus",
+      "Parque da Cidade",
+      "Centro",
+      45,
+      2100,
+      18.2
+    ],
+    [
+      "Van Comunitária V1",
+      "van",
+      "Bairro Bacuri",
+      "Centro",
+      22,
+      340,
+      4.1
+    ],
+    [
+      "Van Comunitária V2",
+      "van",
+      "Zona Rural Norte",
+      "Hospital Municipal",
+      30,
+      280,
+      3.5
+    ],
+    [
+      "Ciclovia Central",
+      "bicicleta",
+      "Estação Bike A",
+      "Estação Bike B",
+      15,
+      890,
+      22
+    ],
+    [
+      "Linha 410 - Rodoviária ↔ Centro",
+      "onibus",
+      "Rodoviária",
+      "Centro",
+      40,
+      1560,
+      14
+    ],
+    [
+      "Integração Multimodal",
+      "misto",
+      "Mercado Municipal",
+      "Rodoviária",
+      50,
+      450,
+      8
+    ]
+  ],
+  "regioes": [
+    [
+      "Centro",
+      95,
+      8200,
+      220
+    ],
+    [
+      "Araçagy",
+      72,
+      5400,
+      150
+    ],
+    [
+      "São José",
+      68,
+      4800,
+      130
+    ],
+    [
+      "Bacuri",
+      55,
+      3100,
+      88
+    ],
+    [
+      "Zona Rural Norte",
+      42,
+      2100,
+      62
+    ],
+    [
+      "Zona Rural Sul",
+      38,
+      1900,
+      55
+    ],
+    [
+      "Periferia Oeste",
+      48,
+      2800,
+      75
+    ]
+  ]
+}

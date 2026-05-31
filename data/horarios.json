@@ -1,0 +1,962 @@
+[
+  {
+    "id": 1,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 2,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 3,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 4,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 5,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 6,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 7,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 8,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 9,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 10,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 11,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 12,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 13,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 14,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 15,
+    "linha": "Linha 101",
+    "tipo": "onibus",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 1
+  },
+  {
+    "id": 16,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 17,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 18,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 19,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 20,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 21,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 22,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 23,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 24,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 25,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 26,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 27,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 28,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 29,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 30,
+    "linha": "Linha 202",
+    "tipo": "onibus",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 2
+  },
+  {
+    "id": 31,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 32,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 33,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 34,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 35,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 36,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 37,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 38,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 39,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 40,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 41,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 42,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 43,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 44,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 45,
+    "linha": "Linha 305",
+    "tipo": "onibus",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 3
+  },
+  {
+    "id": 46,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 47,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 48,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 49,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 50,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 51,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 52,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 53,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 54,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 55,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 56,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 57,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 58,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 59,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 60,
+    "linha": "Van Comunitária V1",
+    "tipo": "van",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 4
+  },
+  {
+    "id": 61,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 62,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 63,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 64,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 65,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 66,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 67,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 68,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 69,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 70,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 71,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 72,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 73,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 74,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 75,
+    "linha": "Van Comunitária V2",
+    "tipo": "van",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 5
+  },
+  {
+    "id": 76,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 77,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 78,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 79,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 80,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 81,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 82,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 83,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 84,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 85,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 86,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 87,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 88,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 89,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 90,
+    "linha": "Ciclovia Central",
+    "tipo": "bicicleta",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 6
+  },
+  {
+    "id": 91,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 92,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 93,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 94,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 95,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 96,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 97,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 98,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 99,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 100,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 101,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 102,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 103,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 104,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 105,
+    "linha": "Linha 410",
+    "tipo": "onibus",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 7
+  },
+  {
+    "id": 106,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "06:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 107,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "07:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 108,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "08:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 109,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "09:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 110,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "10:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 111,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "11:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 112,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "12:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 113,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "13:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 114,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "14:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 115,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "15:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 116,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "16:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 117,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "17:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 118,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "18:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 119,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "19:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  },
+  {
+    "id": 120,
+    "linha": "Integração Multimodal",
+    "tipo": "misto",
+    "horario": "20:00",
+    "sentido": "Centro ↔ Bairro",
+    "rota_id": 8
+  }
+]

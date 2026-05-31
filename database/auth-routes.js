@@ -1,209 +1,193 @@
-const {
-  normalizarCpf,
-  formatarCpf,
-  cpfValido,
-  hashSenha,
-  verificarSenha,
-  gerarToken,
-} = require('./auth-utils');
-
-const SESSAO_DIAS = 7;
-
-function cidadaoPublico(row) {
-  if (!row) return null;
-  return {
-    id: row.id,
-    nome: row.nome,
-    cpf: formatarCpf(row.cpf),
-    email: row.email || '',
-    telefone: row.telefone || '',
-  };
-}
-
-/** Perfil do usuário logado (inclui se é admin) */
-function cidadaoComPerfil(row) {
-  if (!row) return null;
-  return {
-    ...cidadaoPublico(row),
-    isAdmin: !!(row.is_admin ?? row.isAdmin),
-  };
-}
-
-function adminPublico(row) {
-  if (!row) return null;
-  return {
-    ...cidadaoPublico(row),
-    isAdmin: true,
-  };
-}
-
+// database/auth-routes.js
 function registrarRotasAuth(app, db) {
-  function carregarSessao(token) {
-    return db
-      .prepare(
-        `SELECT s.token, s.cidadao_id, c.nome, c.cpf, c.email, c.telefone, c.is_admin
-         FROM sessoes s
-         JOIN cidadaos c ON c.id = s.cidadao_id
-         WHERE s.token = ? AND s.expira_em > datetime('now')`
-      )
-      .get(token);
-  }
-
-  function authMiddleware(req, res, next) {
-    const header = req.headers.authorization || '';
-    const token = header.startsWith('Bearer ') ? header.slice(7) : null;
-    if (!token) {
-      return res.status(401).json({ erro: 'Faça login para continuar' });
+  
+  // Middleware de autenticação
+  const authMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ erro: 'Token não fornecido' });
     }
-    const sessao = carregarSessao(token);
-    if (!sessao) {
-      return res.status(401).json({ erro: 'Sessão expirada. Entre novamente.' });
-    }
-    req.cidadao = {
-      id: sessao.cidadao_id,
-      nome: sessao.nome,
-      cpf: sessao.cpf,
-      email: sessao.email,
-      telefone: sessao.telefone,
-      is_admin: !!sessao.is_admin,
-    };
-    req.token = token;
-    next();
-  }
-
-  function adminAuthMiddleware(req, res, next) {
-    authMiddleware(req, res, () => {
-      if (!req.cidadao.is_admin) {
-        return res.status(403).json({
-          erro: 'Acesso restrito. Use o login administrativo em /admin/login.html',
-        });
+    
+    const token = authHeader.substring(7);
+    // Token simples: base64 do cpf
+    try {
+      const cpf = Buffer.from(token, 'base64').toString();
+      const cidadao = db.getUserByCPF(cpf);
+      if (!cidadao) {
+        return res.status(401).json({ erro: 'Token inválido' });
       }
+      req.cidadao = cidadao;
       next();
-    });
-  }
-
-  function criarSessao(cidadaoId) {
-    const token = gerarToken();
-    const expira = new Date(Date.now() + SESSAO_DIAS * 24 * 60 * 60 * 1000).toISOString();
-    db.prepare('INSERT INTO sessoes (token, cidadao_id, expira_em) VALUES (?,?,?)').run(
-      token,
-      cidadaoId,
-      expira.slice(0, 19).replace('T', ' ')
-    );
-    return token;
-  }
-
-  app.post('/api/auth/registro', (req, res) => {
-    const { nome, cpf, senha, email, telefone } = req.body;
-    if (!nome?.trim()) return res.status(400).json({ erro: 'Nome é obrigatório' });
-    const cpfNum = normalizarCpf(cpf);
-    if (!cpfNum) return res.status(400).json({ erro: 'CPF é obrigatório' });
-    if (!cpfValido(cpfNum)) return res.status(400).json({ erro: 'CPF inválido' });
-    if (!senha || senha.length < 6) {
-      return res.status(400).json({ erro: 'Senha deve ter no mínimo 6 caracteres' });
+    } catch {
+      return res.status(401).json({ erro: 'Token inválido' });
     }
-    const existe = db.prepare('SELECT id FROM cidadaos WHERE cpf = ?').get(cpfNum);
-    if (existe) return res.status(409).json({ erro: 'CPF já cadastrado. Faça login.' });
-
-    const r = db
-      .prepare(
-        'INSERT INTO cidadaos (nome, cpf, email, telefone, senha_hash, is_admin) VALUES (?,?,?,?,?,0)'
-      )
-      .run(nome.trim(), cpfNum, email?.trim() || null, telefone?.trim() || null, hashSenha(senha));
-
-    const cidadao = db.prepare(
-  'SELECT * FROM cidadaos WHERE cpf = ?'
-).get(cpfNum);
-
-if (!cidadao) {
-  return res.status(500).json({
-    erro: 'Erro ao recuperar usuário recém-criado'
-  });
-}
-
-const token = criarSessao(cidadao.id);
-
-
+  };
+  
+  // Middleware de autenticação admin
+  const adminAuthMiddleware = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ erro: 'Token não fornecido' });
+    }
+    
+    const token = authHeader.substring(7);
+    try {
+      const cpf = Buffer.from(token, 'base64').toString();
+      const admin = db.getUserByCPF(cpf);
+      if (!admin || !admin.isAdmin) {
+        return res.status(403).json({ erro: 'Acesso negado. Requer privilégios administrativos.' });
+      }
+      req.admin = admin;
+      next();
+    } catch {
+      return res.status(401).json({ erro: 'Token inválido' });
+    }
+  };
+  
+  // Registro de usuário
+  app.post('/api/auth/registro', async (req, res) => {
+    const { nome, cpf, telefone, email, senha } = req.body;
+    
+    if (!nome || !cpf || !senha) {
+      return res.status(400).json({ erro: 'Nome, CPF e senha são obrigatórios' });
+    }
+    
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    const existingUser = db.getUserByCPF(cpfLimpo);
+    if (existingUser) {
+      return res.status(400).json({ erro: 'CPF já cadastrado' });
+    }
+    
+    const newUser = db.createUser({
+      nome,
+      cpf,
+      telefone: telefone || '',
+      email: email || '',
+      senha
+    });
+    
+    const token = Buffer.from(newUser.cpf).toString('base64');
     res.status(201).json({
-      mensagem: 'Cadastro realizado com sucesso',
       token,
-      cidadao: cidadaoPublico(cidadao),
+      cidadao: {
+        id: newUser.id,
+        nome: newUser.nome,
+        cpf: newUser.cpfFormatado,
+        email: newUser.email,
+        telefone: newUser.telefone,
+        isAdmin: newUser.isAdmin
+      }
     });
   });
-
+  
+  // Login
   app.post('/api/auth/login', (req, res) => {
     const { cpf, senha } = req.body;
-    const cpfNum = normalizarCpf(cpf);
-    if (!cpfNum) return res.status(400).json({ erro: 'CPF é obrigatório' });
-    if (!senha) return res.status(400).json({ erro: 'Senha é obrigatória' });
-
-    const cidadao = db.prepare('SELECT * FROM cidadaos WHERE cpf = ?').get(cpfNum);
-    if (!cidadao || !verificarSenha(senha, cidadao.senha_hash)) {
-      return res.status(401).json({ erro: 'CPF ou senha incorretos' });
+    
+    if (!cpf || !senha) {
+      return res.status(400).json({ erro: 'CPF e senha são obrigatórios' });
     }
-
-    const token = criarSessao(cidadao.id);
+    
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    const user = db.getUserByCPF(cpfLimpo);
+    
+    if (!user || user.senha !== senha) {
+      return res.status(401).json({ erro: 'CPF ou senha inválidos' });
+    }
+    
+    const token = Buffer.from(user.cpf).toString('base64');
     res.json({
-      mensagem: 'Login realizado',
       token,
-      cidadao: cidadaoComPerfil(cidadao),
+      cidadao: {
+        id: user.id,
+        nome: user.nome,
+        cpf: user.cpfFormatado,
+        email: user.email,
+        telefone: user.telefone,
+        isAdmin: user.isAdmin
+      }
     });
   });
-
+  
+  // Admin login
   app.post('/api/auth/admin/login', (req, res) => {
     const { cpf, senha } = req.body;
-    const cpfNum = normalizarCpf(cpf);
-    if (!cpfNum) return res.status(400).json({ erro: 'CPF é obrigatório' });
-    if (!senha) return res.status(400).json({ erro: 'Senha é obrigatória' });
-
-    const cidadao = db.prepare('SELECT * FROM cidadaos WHERE cpf = ?').get(cpfNum);
-    if (!cidadao || !verificarSenha(senha, cidadao.senha_hash)) {
-      return res.status(401).json({ erro: 'CPF ou senha incorretos' });
+    
+    if (!cpf || !senha) {
+      return res.status(400).json({ erro: 'CPF e senha são obrigatórios' });
     }
-    if (!cidadao.is_admin) {
-      return res.status(403).json({
-        erro: 'Este CPF não tem permissão de administrador. Solicite acesso a um gestor municipal.',
-      });
+    
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    const admin = db.getUserByCPF(cpfLimpo);
+    
+    if (!admin || admin.senha !== senha || !admin.isAdmin) {
+      return res.status(401).json({ erro: 'CPF ou senha inválidos, ou usuário não é administrador' });
     }
-
-    const token = criarSessao(cidadao.id);
+    
+    const token = Buffer.from(admin.cpf).toString('base64');
     res.json({
-      mensagem: 'Login administrativo realizado',
       token,
-      admin: adminPublico(cidadao),
+      admin: {
+        id: admin.id,
+        nome: admin.nome,
+        cpf: admin.cpfFormatado,
+        email: admin.email,
+        isAdmin: admin.isAdmin
+      }
     });
   });
-
-  app.post('/api/auth/logout', authMiddleware, (req, res) => {
-    db.prepare('DELETE FROM sessoes WHERE token = ?').run(req.token);
-    res.json({ mensagem: 'Logout realizado' });
-  });
-
+  
+  // Obter dados do usuário atual
   app.get('/api/auth/me', authMiddleware, (req, res) => {
-    res.json({ cidadao: cidadaoComPerfil(req.cidadao) });
+    res.json({
+      cidadao: {
+        id: req.cidadao.id,
+        nome: req.cidadao.nome,
+        cpf: req.cidadao.cpfFormatado,
+        email: req.cidadao.email,
+        telefone: req.cidadao.telefone,
+        isAdmin: req.cidadao.isAdmin
+      }
+    });
   });
-
-  app.delete('/api/auth/me', authMiddleware, (req, res) => {
-    const cidadaoId = req.cidadao.id;
-    db.prepare('DELETE FROM solicitacoes WHERE cidadao_id = ?').run(cidadaoId);
-    db.prepare('DELETE FROM sessoes WHERE cidadao_id = ?').run(cidadaoId);
-    db.prepare('DELETE FROM cidadaos WHERE id = ?').run(cidadaoId);
-    res.json({ mensagem: 'Conta excluída com sucesso' });
-  });
-
+  
+  // Admin: obter dados do admin atual
   app.get('/api/auth/admin/me', adminAuthMiddleware, (req, res) => {
-    res.json({ admin: adminPublico(req.cidadao) });
+    res.json({
+      admin: {
+        id: req.admin.id,
+        nome: req.admin.nome,
+        cpf: req.admin.cpfFormatado,
+        email: req.admin.email,
+        isAdmin: req.admin.isAdmin
+      }
+    });
   });
-
+  
+  // Logout (apenas limpa no cliente)
+  app.post('/api/auth/logout', (req, res) => {
+    res.json({ ok: true });
+  });
+  
+  // Deletar conta
+  app.delete('/api/auth/me', authMiddleware, (req, res) => {
+    const deleted = db.deleteUser(req.cidadao.id);
+    if (deleted) {
+      res.json({ ok: true, mensagem: 'Conta excluída com sucesso' });
+    } else {
+      res.status(404).json({ erro: 'Usuário não encontrado' });
+    }
+  });
+  
+  // Minhas solicitações
   app.get('/api/auth/minhas-solicitacoes', authMiddleware, (req, res) => {
-    const lista = db
-      .prepare(
-        'SELECT * FROM solicitacoes WHERE cidadao_id = ? ORDER BY criado_em DESC LIMIT 20'
-      )
-      .all(req.cidadao.id);
-    res.json(lista);
+    const solicitacoes = db.getSolicitacoesByCidadao(req.cidadao.id);
+    res.json(solicitacoes.map(s => ({
+      ...s,
+      criado_em: new Date(s.criado_em).toLocaleDateString('pt-BR')
+    })));
   });
-
+  
   return { authMiddleware, adminAuthMiddleware };
 }
 

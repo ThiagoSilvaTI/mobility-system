@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "cidadao_id": 2,
+    "nome": "João Silva",
+    "telefone": "(98) 91234-5678",
+    "origem": "Zona Rural Norte",
+    "destino": "Centro",
+    "regiao": "Zona Rural Norte",
+    "status": "aprovado",
+    "criado_em": "2026-05-31T19:57:24.556Z"
+  },
+  {
+    "id": 2,
+    "cidadao_id": 3,
+    "nome": "Maria Santos",
+    "telefone": "(98) 98765-4321",
+    "origem": "Araçagy",
+    "destino": "Hospital Municipal",
+    "regiao": "Araçagy",
+    "status": "aprovado",
+    "criado_em": "2026-05-31T19:57:24.556Z"
+  }
+]

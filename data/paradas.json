@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "nome": "Bairro Araçagy",
+    "lat": -3.662,
+    "lng": -45.372
+  },
+  {
+    "id": 2,
+    "nome": "Praça Coronel Raimundo",
+    "lat": -3.6692,
+    "lng": -45.3801
+  },
+  {
+    "id": 3,
+    "nome": "Bairro São José",
+    "lat": -3.674,
+    "lng": -45.386
+  },
+  {
+    "id": 4,
+    "nome": "Parque da Cidade",
+    "lat": -3.666,
+    "lng": -45.3845
+  },
+  {
+    "id": 5,
+    "nome": "Mercado Municipal",
+    "lat": -3.6645,
+    "lng": -45.3785
+  },
+  {
+    "id": 6,
+    "nome": "Estação Bike A",
+    "lat": -3.6688,
+    "lng": -45.3795
+  },
+  {
+    "id": 7,
+    "nome": "Estação Bike B",
+    "lat": -3.6675,
+    "lng": -45.3835
+  },
+  {
+    "id": 8,
+    "nome": "Hospital Municipal",
+    "lat": -3.6715,
+    "lng": -45.3768
+  },
+  {
+    "id": 9,
+    "nome": "Rodoviária",
+    "lat": -3.6675,
+    "lng": -45.3835
+  }
+]

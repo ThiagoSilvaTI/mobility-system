@@ -1,74 +1,99 @@
-const { normalizarCpf, formatarCpf } = require('./auth-utils');
-
+// database/admin-routes.js
 function registrarRotasAdmin(app, db, adminAuthMiddleware) {
+  
+  // Listar todos os cidadãos
   app.get('/api/admin/cidadaos', adminAuthMiddleware, (req, res) => {
-    const busca = (req.query.busca || '').trim();
-    let sql = 'SELECT id, nome, cpf, email, telefone, is_admin, criado_em FROM cidadaos';
-    const params = [];
+    const { busca } = req.query;
+    let users = db.getAllUsers();
+    
     if (busca) {
-      const cpf = normalizarCpf(busca);
-      sql += ' WHERE nome LIKE ? OR cpf LIKE ?';
-      params.push(`%${busca}%`, `%${cpf || busca.replace(/\D/g, '')}%`);
+      const termo = busca.toLowerCase();
+      users = users.filter(u => 
+        u.nome.toLowerCase().includes(termo) || 
+        u.cpf.includes(termo)
+      );
     }
-    sql += ' ORDER BY is_admin DESC, nome ASC LIMIT 100';
-    const lista = db.prepare(sql).all(...params).map((c) => ({
-      id: c.id,
-      nome: c.nome,
-      cpf: formatarCpf(c.cpf),
-      cpfNumeros: c.cpf,
-      email: c.email || '',
-      telefone: c.telefone || '',
-      isAdmin: !!c.is_admin,
-      criadoEm: c.criado_em,
-    }));
-    res.json(lista);
+    
+    res.json(users.map(u => ({
+      id: u.id,
+      nome: u.nome,
+      cpf: u.cpfFormatado,
+      cpfNumeros: u.cpf,
+      email: u.email,
+      telefone: u.telefone,
+      isAdmin: u.isAdmin
+    })));
   });
-
+  
+  // Conceder acesso admin
   app.post('/api/admin/acessos', adminAuthMiddleware, (req, res) => {
-    const cpfNum = normalizarCpf(req.body.cpf);
-    if (!cpfNum) return res.status(400).json({ erro: 'Informe o CPF' });
-
-    const cidadao = db.prepare('SELECT id, nome, cpf, is_admin FROM cidadaos WHERE cpf = ?').get(cpfNum);
-    if (!cidadao) {
-      return res.status(404).json({
-        erro: 'CPF não cadastrado. O cidadão precisa criar conta antes de receber acesso admin.',
-      });
+    const { cpf } = req.body;
+    if (!cpf) {
+      return res.status(400).json({ erro: 'CPF é obrigatório' });
     }
-    if (cidadao.is_admin) {
-      return res.status(409).json({ erro: 'Este CPF já possui acesso de administrador.' });
+    
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    const user = db.getUserByCPF(cpfLimpo);
+    
+    if (!user) {
+      return res.status(404).json({ erro: 'Cidadão não encontrado' });
     }
-
-    db.prepare('UPDATE cidadaos SET is_admin = 1 WHERE id = ?').run(cidadao.id);
-    res.json({
-      mensagem: `Acesso admin concedido a ${cidadao.nome}`,
-      cidadao: { id: cidadao.id, nome: cidadao.nome, cpf: formatarCpf(cidadao.cpf), isAdmin: true },
-    });
+    
+    if (user.isAdmin) {
+      return res.status(400).json({ erro: 'Usuário já é administrador' });
+    }
+    
+    db.updateUser(user.id, { isAdmin: true });
+    res.json({ mensagem: `Acesso administrativo concedido para ${user.nome}` });
   });
-
+  
+  // Revogar acesso admin
   app.delete('/api/admin/acessos', adminAuthMiddleware, (req, res) => {
-    const cpfNum = normalizarCpf(req.body.cpf);
-    if (!cpfNum) return res.status(400).json({ erro: 'Informe o CPF' });
-
-    const cidadao = db.prepare('SELECT id, nome, cpf, is_admin FROM cidadaos WHERE cpf = ?').get(cpfNum);
-    if (!cidadao) return res.status(404).json({ erro: 'CPF não encontrado' });
-    if (!cidadao.is_admin) {
-      return res.status(400).json({ erro: 'Este CPF não é administrador' });
+    const { cpf } = req.body;
+    if (!cpf) {
+      return res.status(400).json({ erro: 'CPF é obrigatório' });
     }
-
-    if (cidadao.id === req.cidadao.id) {
-      return res.status(400).json({ erro: 'Você não pode remover seu próprio acesso admin' });
+    
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    const user = db.getUserByCPF(cpfLimpo);
+    
+    if (!user) {
+      return res.status(404).json({ erro: 'Cidadão não encontrado' });
     }
-
-    const totalAdmins = db.prepare('SELECT COUNT(*) as c FROM cidadaos WHERE is_admin = 1').get();
-    if (totalAdmins.c <= 1) {
-      return res.status(400).json({ erro: 'Não é possível remover o último administrador do sistema' });
+    
+    if (!user.isAdmin) {
+      return res.status(400).json({ erro: 'Usuário não é administrador' });
     }
-
-    db.prepare('UPDATE cidadaos SET is_admin = 0 WHERE id = ?').run(cidadao.id);
-    res.json({
-      mensagem: `Acesso admin removido de ${cidadao.nome}`,
-      cidadao: { id: cidadao.id, nome: cidadao.nome, cpf: formatarCpf(cidadao.cpf), isAdmin: false },
-    });
+    
+    if (user.cpf === '12345678900') {
+      return res.status(403).json({ erro: 'Não é possível revogar acesso do administrador principal' });
+    }
+    
+    db.updateUser(user.id, { isAdmin: false });
+    res.json({ mensagem: `Acesso administrativo revogado para ${user.nome}` });
+  });
+  
+  // Dashboard
+  app.get('/api/admin/dashboard', adminAuthMiddleware, (req, res) => {
+    res.json(db.getDashboardData());
+  });
+  
+  // Solicitações (admin)
+  app.get('/api/solicitacoes', adminAuthMiddleware, (req, res) => {
+    res.json(db.getAllSolicitacoes());
+  });
+  
+  // Atualizar solicitação
+  app.patch('/api/solicitacoes/:id', adminAuthMiddleware, (req, res) => {
+    const { status } = req.body;
+    const id = parseInt(req.params.id);
+    const solicitacao = db.updateSolicitacao(id, { status });
+    
+    if (!solicitacao) {
+      return res.status(404).json({ erro: 'Solicitação não encontrada' });
+    }
+    
+    res.json({ ok: true });
   });
 }
 
