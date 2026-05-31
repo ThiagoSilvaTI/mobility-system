@@ -1,95 +1,158 @@
-/* auth.css */
+/* ======================================
+   auth.css - Estilos de autenticação
+   Cores: Azul Marinho (#032147),
+          Verde Escuro (#0f3d2e),
+          Branco (#ffffff)
+   ====================================== */
+
 :root {
   --marinho: #032147;
   --verde-escuro: #0f3d2e;
+  --verde-claro: #1a8f6a;
   --branco: #ffffff;
   --cinza-claro: #edf3f8;
+  --cinza-medio: #b8c8d7;
   --texto: #10202c;
   --texto-suave: #5a6d7d;
+  --sombra: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --raio: 20px;
+  --raio-sm: 12px;
 }
 
+/* ========== PÁGINAS DE AUTH ========== */
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  background: linear-gradient(160deg, var(--branco) 0%, var(--cinza-claro) 50%, #f4f8fc 100%);
+  padding: 2rem;
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
 }
 
 .auth-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   background: var(--branco);
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 2.5rem;
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
   border-top: 4px solid var(--verde-escuro);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-card--admin {
+  border-top-color: var(--marinho);
 }
 
 .auth-card__brand {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-.auth-card__brand .logo { font-size: 2.5rem; }
-.auth-card h1 { font-size: 1.4rem; color: var(--marinho); margin: 0.5rem 0 0.25rem; }
-.auth-card p { color: var(--texto-suave); font-size: 0.9rem; }
+.auth-card__brand .logo {
+  font-size: 3rem;
+  display: inline-block;
+}
 
-.auth-form { display: flex; flex-direction: column; gap: 1rem; }
-.auth-form label { font-weight: 600; font-size: 0.9rem; color: var(--marinho); }
+.auth-card h1 {
+  font-size: 1.5rem;
+  color: var(--marinho);
+  margin: 0.75rem 0 0.25rem;
+}
+
+.auth-card p {
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+/* ========== FORMULÁRIO AUTH ========== */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.auth-form label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--marinho);
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
 .auth-form input {
-  padding: 0.7rem 0.85rem;
-  border: 2px solid #cfdbe8;
-  border-radius: 10px;
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--raio-sm);
   font-size: 1rem;
+  transition: var(--transicao);
 }
+
 .auth-form input:focus {
   outline: none;
   border-color: var(--verde-escuro);
+  box-shadow: 0 0 0 3px rgba(15, 61, 46, 0.1);
 }
-.auth-form .hint { font-size: 0.8rem; color: var(--texto-suave); margin-top: -0.5rem; }
 
-.auth-msg {
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
+.hint {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  margin-top: 0.35rem;
 }
-.auth-msg--erro { background: var(--marinho); color: #fff; }
-.auth-msg--ok { background: #d9eadf; color: var(--verde-escuro); }
+
+/* ========== MENSAGENS AUTH ========== */
+.auth-msg {
+  padding: 0.85rem 1rem;
+  border-radius: var(--raio-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.auth-msg--erro {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  border-left: 4px solid #dc2626;
+}
+
+.auth-msg--ok {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #064e3b;
+  border-left: 4px solid #10b981;
+}
 
 .auth-footer {
   text-align: center;
-  margin-top: 1.25rem;
-  font-size: 0.9rem;
-  color: var(--texto-suave);
-}
-.auth-footer a { color: var(--marinho); font-weight: 600; }
-
-.demo-box {
-  margin-top: 1rem;
-  padding: 0.75rem;
-  background: #eef4fb;
-  border-radius: 8px;
-  font-size: 0.8rem;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
   color: var(--texto-suave);
 }
 
-.user-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-.user-bar__nome { font-size: 0.85rem; color: var(--texto); }
-.btn--sm { padding: 0.35rem 0.75rem; font-size: 0.85rem; }
-.btn--outline {
-  background: transparent;
-  border: 2px solid var(--marinho);
+.auth-footer a {
   color: var(--marinho);
+  font-weight: 600;
+  text-decoration: none;
 }
 
-/* —— Cadastro aprimorado —— */
+.auth-footer a:hover {
+  text-decoration: underline;
+  color: var(--verde-escuro);
+}
+
+/* ========== LAYOUT DE CADASTRO EM DUAS COLUNAS ========== */
 .auth-page--cadastro {
   padding: 0;
   align-items: stretch;
@@ -100,14 +163,19 @@
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
+  background: var(--branco);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
 }
 
+/* ========== LADO ESQUERDO - HERO ========== */
 .cadastro-hero {
-  background: linear-gradient(165deg, var(--marinho) 0%, var(--verde-escuro) 55%, #021630 100%);
-  color: #fff;
-  padding: 2rem 2.5rem;
+  background: linear-gradient(145deg, var(--marinho) 0%, var(--verde-escuro) 100%);
+  color: var(--branco);
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -119,30 +187,52 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.12) 0%, transparent 50%),
-              radial-gradient(circle at 90% 10%, rgba(255,255,255,0.08) 0%, transparent 40%);
+  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
   pointer-events: none;
 }
-
-.cadastro-hero__content { position: relative; z-index: 1; }
 
 .cadastro-hero__voltar {
   position: relative;
   z-index: 1;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 2rem;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transicao);
 }
-.cadastro-hero__voltar:hover { color: #fff; text-decoration: underline; }
 
-.cadastro-hero__logo { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
-.cadastro-hero h1 { font-size: 2rem; font-weight: 800; margin: 0; }
+.cadastro-hero__voltar:hover {
+  color: var(--branco);
+  transform: translateX(-4px);
+}
+
+.cadastro-hero__content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.cadastro-hero__logo {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.cadastro-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
 .cadastro-hero__tagline {
-  font-size: 1.05rem;
-  opacity: 0.92;
+  font-size: 1rem;
+  opacity: 0.9;
   margin: 0.5rem 0 2rem;
   max-width: 280px;
   line-height: 1.5;
@@ -151,135 +241,166 @@
 .cadastro-beneficios {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .cadastro-beneficios li {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  background: rgba(255,255,255,0.12);
-  padding: 1rem 1.1rem;
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 1.25rem;
+  border-radius: var(--raio-sm);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transicao);
 }
 
-.cadastro-beneficios__icon { font-size: 1.5rem; flex-shrink: 0; }
-.cadastro-beneficios strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
-.cadastro-beneficios span { font-size: 0.85rem; opacity: 0.88; }
+.cadastro-beneficios li:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.cadastro-beneficios__icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cadastro-beneficios strong {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.cadastro-beneficios span {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
 
 .cadastro-hero__eco {
   position: relative;
   z-index: 1;
-  font-size: 0.85rem;
-  opacity: 0.85;
-  margin: 2rem 0 0;
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* ========== LADO DIREITO - FORMULÁRIO ========== */
 .cadastro-panel {
   background: var(--branco);
-  padding: 2rem 2.5rem 2.5rem;
+  padding: 2.5rem;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  box-shadow: -8px 0 40px rgba(0, 0, 0, 0.06);
 }
 
-.cadastro-panel__header { margin-bottom: 1.5rem; }
+.cadastro-panel__header {
+  margin-bottom: 1.5rem;
+}
+
 .cadastro-panel__header h2 {
   font-size: 1.5rem;
   color: var(--marinho);
   margin: 0 0 0.35rem;
 }
-.cadastro-panel__header p { color: var(--texto-suave); font-size: 0.9rem; margin: 0; }
 
-.obrigatorio { color: var(--marinho); font-weight: 700; }
+.cadastro-panel__header p {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.obrigatorio {
+  color: var(--marinho);
+  font-weight: 700;
+}
+
 .opcional-tag {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  background: var(--cinza-claro);
   color: var(--marinho);
-  background: #eef4fb;
-  padding: 0.15rem 0.45rem;
-  border-radius: 4px;
-  margin-left: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  margin-left: 0.5rem;
   vertical-align: middle;
 }
 
+/* ========== STEPS DO CADASTRO ========== */
 .cadastro-steps {
   display: flex;
   align-items: center;
-  gap: 0;
-  margin-bottom: 1.75rem;
-  padding: 0.75rem 1rem;
-  background: #eef4fb;
-  border-radius: 12px;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: var(--cinza-claro);
+  border-radius: 999px;
 }
 
 .cadastro-step {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.25rem;
   flex: 1;
-  opacity: 0.45;
-  transition: opacity 0.25s;
+  opacity: 0.5;
+  transition: var(--transicao);
 }
 
 .cadastro-step--ativo,
-.cadastro-step--done { opacity: 1; }
+.cadastro-step--done {
+  opacity: 1;
+}
 
 .cadastro-step__num {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #d6e1ec;
+  background: var(--branco);
   color: var(--marinho);
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.25s, color 0.25s;
+  transition: var(--transicao);
 }
 
 .cadastro-step--ativo .cadastro-step__num {
   background: var(--verde-escuro);
-  color: #fff;
-  box-shadow: 0 2px 8px rgba(15, 61, 46, 0.4);
+  color: var(--branco);
+  box-shadow: 0 2px 8px rgba(15, 61, 46, 0.3);
 }
 
 .cadastro-step--done .cadastro-step__num {
   background: var(--marinho);
-  color: #fff;
+  color: var(--branco);
+  font-size: 0;
 }
 
 .cadastro-step--done .cadastro-step__num::after {
   content: '✓';
-  font-size: 0.75rem;
+  font-size: 0.85rem;
 }
-.cadastro-step--done .cadastro-step__num { font-size: 0; }
-.cadastro-step--done .cadastro-step__num::after { font-size: 0.85rem; }
 
 .cadastro-step__label {
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--marinho);
-  text-align: center;
 }
 
 .cadastro-step__linha {
-  flex: 0 0 24px;
+  flex: 1;
   height: 2px;
-  background: #d6e1ec;
-  margin-bottom: 1.2rem;
+  background: rgba(255, 255, 255, 0.4);
 }
 
+/* ========== SEÇÕES DO FORMULÁRIO ========== */
 .cadastro-secao {
   border: none;
   margin: 0 0 1.5rem;
@@ -294,23 +415,28 @@
   font-weight: 700;
   color: var(--marinho);
   margin-bottom: 1rem;
-  padding: 0;
   width: 100%;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cinza-claro);
 }
 
-.cadastro-secao__icone { font-size: 1.1rem; }
-.cadastro-secao--opcional legend { color: var(--texto-suave); }
+.cadastro-secao__icone {
+  font-size: 1.1rem;
+}
 
-.cadastro-form { gap: 0; }
+.cadastro-secao--opcional legend {
+  color: var(--texto-suave);
+}
 
-.cadastro-form .field {
-  margin-bottom: 1.1rem;
+/* ========== CAMPOS DO FORMULÁRIO ========== */
+.field {
+  margin-bottom: 1rem;
 }
 
 .field label {
   display: block;
   font-weight: 600;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--marinho);
   margin-bottom: 0.4rem;
 }
@@ -318,27 +444,31 @@
 .field__wrap {
   display: flex;
   align-items: center;
-  background: #f8fbff;
-  border: 2px solid #cfdbe8;
-  border-radius: 12px;
-  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: var(--raio-sm);
+  transition: var(--transicao);
 }
 
 .field__wrap:focus-within {
   border-color: var(--verde-escuro);
   background: var(--branco);
-  box-shadow: 0 0 0 4px rgba(15, 61, 46, 0.12);
+  box-shadow: 0 0 0 3px rgba(15, 61, 46, 0.1);
 }
 
-.field--ok .field__wrap { border-color: var(--verde-escuro); }
-.field--erro .field__wrap { border-color: var(--marinho); background: #fff6f6; }
+.field--ok .field__wrap {
+  border-color: var(--verde-escuro);
+}
+
+.field--erro .field__wrap {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
 
 .field__icon {
-  padding: 0 0.85rem;
+  padding: 0 1rem;
   color: var(--texto-suave);
-  font-size: 0.85rem;
-  font-weight: 700;
-  user-select: none;
+  font-size: 0.9rem;
   flex-shrink: 0;
 }
 
@@ -346,122 +476,199 @@
   flex: 1;
   border: none;
   background: transparent;
-  padding: 0.8rem 0.85rem 0.8rem 0;
-  font-size: 1rem;
+  padding: 0.85rem 0;
+  font-size: 0.95rem;
   min-width: 0;
 }
 
-.field__wrap input:focus { outline: none; }
+.field__wrap input:focus {
+  outline: none;
+}
 
 .field__toggle-senha {
   background: none;
   border: none;
-  padding: 0 0.85rem;
+  padding: 0 1rem;
   cursor: pointer;
   font-size: 1rem;
   opacity: 0.6;
-  transition: opacity 0.2s;
+  transition: var(--transicao);
 }
-.field__toggle-senha:hover { opacity: 1; }
+
+.field__toggle-senha:hover {
+  opacity: 1;
+}
 
 .field__status {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   margin-top: 0.35rem;
-  font-weight: 600;
+  font-weight: 500;
 }
-.field__status--ok { color: var(--verde-escuro); }
-.field__status--erro { color: var(--marinho); }
-.field__status--pendente { color: var(--texto-suave); }
+
+.field__status--ok {
+  color: var(--verde-escuro);
+}
+
+.field__status--erro {
+  color: #dc2626;
+}
+
+.field__status--pendente {
+  color: var(--texto-suave);
+}
 
 .field__erro {
   display: block;
-  font-size: 0.8rem;
-  color: var(--marinho);
+  font-size: 0.75rem;
+  color: #dc2626;
   margin-top: 0.25rem;
-  font-weight: 600;
 }
 
-.cadastro-form .hint {
-  margin-top: 0.35rem;
-  margin-bottom: 0;
+/* ========== FORÇA DA SENHA ========== */
+.senha-forca {
+  margin-top: 0.5rem;
 }
 
-.senha-forca { margin-top: 0.5rem; }
 .senha-forca__barra {
   height: 4px;
-  background: #eef4fb;
-  border-radius: 4px;
+  background: #e2e8f0;
+  border-radius: 999px;
   overflow: hidden;
   margin-bottom: 0.35rem;
 }
+
 .senha-forca__barra span {
   display: block;
   height: 100%;
   width: 0;
-  border-radius: 4px;
-  transition: width 0.3s, background 0.3s;
+  border-radius: 999px;
+  transition: width 0.3s ease;
 }
-.senha-forca__texto { font-size: 0.78rem; color: var(--texto-suave); font-weight: 600; }
 
+.senha-forca__texto {
+  font-size: 0.7rem;
+  color: var(--texto-suave);
+  font-weight: 500;
+}
+
+/* ========== GRID DO FORMULÁRIO ========== */
 .cadastro-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
+/* ========== TERMOS ========== */
 .cadastro-termos {
   display: flex;
   align-items: flex-start;
-  gap: 0.65rem;
-  font-size: 0.85rem;
+  gap: 0.75rem;
+  font-size: 0.8rem;
   color: var(--texto-suave);
-  line-height: 1.45;
-  margin: 0.5rem 0 1.25rem;
+  line-height: 1.4;
+  margin: 1rem 0;
   cursor: pointer;
 }
+
 .cadastro-termos input {
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
   width: 1.1rem;
   height: 1.1rem;
   accent-color: var(--verde-escuro);
   flex-shrink: 0;
 }
 
+/* ========== BOTÃO DE CADASTRO ========== */
 .btn--cadastro {
-  padding: 0.95rem 1.5rem;
-  font-size: 1.05rem;
-  border-radius: 12px;
-  position: relative;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: var(--raio-sm);
   background: var(--verde-escuro);
-  color: #fff;
+  color: var(--branco);
   border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transicao);
+  margin-top: 0.5rem;
 }
+
+.btn--cadastro:hover {
+  background: #0a2e22;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(15, 61, 46, 0.3);
+}
+
 .btn--cadastro:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
-.btn__loading { font-weight: 600; }
 
-.cadastro-panel .auth-footer { margin-top: auto; padding-top: 1rem; }
+.btn__loading {
+  font-weight: 600;
+}
 
+.demo-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--cinza-claro);
+  border-radius: var(--raio-sm);
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  border-left: 3px solid var(--verde-escuro);
+}
+
+/* ========== RESPONSIVO ========== */
 @media (max-width: 900px) {
   .cadastro-layout {
     grid-template-columns: 1fr;
-    max-width: 520px;
+    max-width: 560px;
+    margin: 1rem;
+    border-radius: var(--raio);
   }
+
   .cadastro-hero {
-    padding: 1.5rem 1.75rem;
-    min-height: auto;
+    padding: 1.5rem;
+    text-align: center;
   }
-  .cadastro-beneficios { display: none; }
-  .cadastro-hero__tagline { margin-bottom: 0; }
-  .cadastro-hero__eco { display: none; }
-  .cadastro-panel { padding: 1.5rem 1.75rem 2rem; box-shadow: none; }
-  .cadastro-grid-2 { grid-template-columns: 1fr; }
+
+  .cadastro-hero__tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cadastro-beneficios {
+    display: none;
+  }
+
+  .cadastro-hero__eco {
+    display: none;
+  }
+
+  .cadastro-panel {
+    padding: 1.5rem;
+  }
+
+  .cadastro-grid-2 {
+    grid-template-columns: 1fr;
+  }
 }
 
-@media (max-width: 400px) {
-  .cadastro-step__label { font-size: 0.62rem; }
-  .cadastro-step__linha { flex: 0 0 12px; }
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+
+  .cadastro-panel {
+    padding: 1rem;
+  }
+
+  .cadastro-steps {
+    gap: 0.25rem;
+  }
+
+  .cadastro-step__label {
+    font-size: 0.6rem;
+  }
 }
