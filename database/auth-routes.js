@@ -122,7 +122,7 @@ if (!cidadao) {
 }
 
 const token = criarSessao(cidadao.id);
-    const token = criarSessao(cidadao.id);
+
 
     res.status(201).json({
       mensagem: 'Cadastro realizado com sucesso',
